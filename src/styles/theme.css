@@ -1,0 +1,32 @@
+:root {
+  --canvas: #3e5a41;
+  --bg: #f5f6f0;
+  --surface: #ffffff;
+  --card: #fbfbf8;
+  --divider: #d6decf;
+
+  --text: #1f271b;
+  --text-muted: #64705f;
+
+  --primary: #5f782e;
+  --primary-hover: #4f6527;
+  --primary-subtle: #e6edda;
+
+  --sand: #e9dfcc;
+  --moss: #8fa176;
+  --ink: #1a2517;
+
+  --success: #3d8451;
+  --warning: #9f7a34;
+  --error: #a04040;
+
+  --radius-pill: 9999px;
+  --radius-card: 24px;
+  --radius-soft: 18px;
+
+  --shadow: 0 16px 40px rgba(24, 39, 25, 0.12);
+  --shadow-soft: 0 8px 26px rgba(24, 39, 25, 0.08);
+
+  --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', serif;
+  --font-body: 'Manrope', 'Avenir Next', 'Helvetica Neue', sans-serif;
+}
