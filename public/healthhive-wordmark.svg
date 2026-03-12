@@ -1,0 +1,6 @@
+<svg width="240" height="64" viewBox="0 0 240 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M28 10 L44 20 L44 40 L28 50 L12 40 L12 20 Z" stroke="#3E513E" stroke-width="3" fill="none"/>
+  <path d="M28 22 L28 38 M20 30 L36 30" stroke="#3E513E" stroke-width="3" stroke-linecap="round"/>
+  <text x="64" y="38" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="#111827">Health</text>
+  <text x="155" y="38" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="#3E513E">Hive</text>
+</svg>

@@ -1,0 +1,31 @@
+.chip {
+  min-height: 32px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--divider);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--text-muted);
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.chip:hover {
+  border-color: color-mix(in srgb, var(--primary) 38%, white 62%);
+  color: var(--text);
+  background: #fff;
+}
+
+.chip--active {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: linear-gradient(180deg, rgba(230, 237, 218, 0.96), rgba(255, 255, 255, 0.94));
+}
+
+.chip-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
