@@ -128,6 +128,15 @@ npm run dev
 npm run build
 ```
 
+### Native app commands
+
+```bash
+npm run tauri:doctor
+npm run tauri:build
+npm run tauri:android:apk
+npm run tauri:ios:sim
+```
+
 ### Lint the project
 
 ```bash
@@ -144,6 +153,7 @@ What is implemented now:
 - demo auth state
 - marketing site
 - patient/provider/admin screen structure
+- Tauri-based desktop and mobile packaging bootstrap
 
 What is not implemented yet:
 
@@ -153,6 +163,7 @@ What is not implemented yet:
 - API integration
 - provider review workflows backed by real data
 - admin account management backed by real data
+- signed release distribution for desktop and mobile stores
 
 ## Backend Direction
 
@@ -179,6 +190,7 @@ To make this project portfolio-level, the highest-value additions are:
 - loading, error, and empty states across the app
 - automated testing
 - deployment for both frontend and backend
+- packaged desktop and mobile app distribution
 
 ## Demo Flow
 
@@ -202,6 +214,18 @@ Because auth is still demo-mode, role selection is currently handled client-side
 - exportable summaries
 - accessibility improvements
 - CI pipeline for lint, build, and tests
+- signed native release workflow for macOS, Windows, iOS, and Android
+
+## Native Packaging
+
+HealthHive now includes a Tauri wrapper under `src-tauri/` so the same React client can be packaged as:
+
+- macOS `.app` and `.dmg`
+- Windows desktop bundles
+- Android debug APK builds
+- iOS simulator app builds
+
+Local setup and native build details are documented in [TAURI_SETUP.md](./TAURI_SETUP.md). The native release and CI flow is documented in [RELEASE_PROCESS.md](./RELEASE_PROCESS.md).
 
 ## Repository Notes
 
