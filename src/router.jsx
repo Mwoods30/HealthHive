@@ -10,13 +10,20 @@ import {
 
 import LandingPage from './screens/marketing/LandingPage';
 import LoginPage from './screens/auth/LoginPage';
+import SignUpPage from './screens/auth/SignUpPage';
 
 import PatientHome from './screens/patient/PatientHome';
 import PatientSubmit from './screens/patient/PatientSubmit';
 import PatientResults from './screens/patient/PatientResults';
 import PatientHistory from './screens/patient/PatientHistory';
+import PatientSettings from './screens/patient/PatientSettings';
+import PatientAppointments from './screens/patient/PatientAppointments';
+import PatientMedications from './screens/patient/PatientMedications';
+import PatientBilling from './screens/patient/PatientBilling';
 
 import ProviderDashboard from './screens/provider/ProviderDashboard';
+import ProviderPatients from './screens/provider/ProviderPatients';
+import ProviderSettings from './screens/provider/ProviderSettings';
 import AdminDashboard from './screens/admin/AdminDashboard';
 
 function RequireRole({ allowedRoles }) {
@@ -48,6 +55,7 @@ export default function Router() {
       <Route path="/how-to" element={<Navigate to="/#how-to" replace />} />
       <Route path="/contact" element={<Navigate to="/#contact" replace />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
 
       {/* Patient */}
       <Route element={<RequireRole allowedRoles={[ROLE_PATIENT]} />}>
@@ -55,11 +63,17 @@ export default function Router() {
         <Route path="/patient/submit" element={<PatientSubmit />} />
         <Route path="/patient/results" element={<PatientResults />} />
         <Route path="/patient/history" element={<PatientHistory />} />
+        <Route path="/patient/appointments" element={<PatientAppointments />} />
+        <Route path="/patient/medications" element={<PatientMedications />} />
+        <Route path="/patient/billing" element={<PatientBilling />} />
+        <Route path="/patient/settings" element={<PatientSettings />} />
       </Route>
 
       {/* Provider */}
       <Route element={<RequireRole allowedRoles={[ROLE_PROVIDER]} />}>
         <Route path="/provider" element={<ProviderDashboard />} />
+        <Route path="/provider/patients" element={<ProviderPatients />} />
+        <Route path="/provider/settings" element={<ProviderSettings />} />
       </Route>
 
       {/* Admin */}

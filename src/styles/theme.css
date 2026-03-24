@@ -1,6 +1,6 @@
 :root {
-  --canvas: #3e5a41;
-  --bg: #f5f6f0;
+  --canvas: #1a3d2e;
+  --bg: #f2f7f4;
   --surface: #ffffff;
   --card: #fbfbf8;
   --divider: #d6decf;
@@ -8,12 +8,12 @@
   --text: #1f271b;
   --text-muted: #64705f;
 
-  --primary: #5f782e;
-  --primary-hover: #4f6527;
-  --primary-subtle: #e6edda;
+  --primary: #2d6a4f;
+  --primary-hover: #1e4d39;
+  --primary-subtle: #d1ece1;
 
   --sand: #e9dfcc;
-  --moss: #8fa176;
+  --moss: #52b788;
   --ink: #1a2517;
 
   --success: #3d8451;

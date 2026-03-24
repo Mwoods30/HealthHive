@@ -1,0 +1,35 @@
+.skeleton {
+  border-radius: 6px;
+  background: linear-gradient(90deg,
+    rgba(31,39,27,0.07) 25%,
+    rgba(31,39,27,0.13) 50%,
+    rgba(31,39,27,0.07) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton--mb    { margin-bottom: 8px; }
+.skeleton--mb-lg { margin-bottom: 14px; }
+.skeleton--mb-sm { margin-bottom: 6px; }
+
+.skeleton-card {
+  padding: 4px 0;
+}
+
+.skeleton-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.4);
+  border: 1px solid rgba(31,39,27,0.07);
+  margin-bottom: 8px;
+}

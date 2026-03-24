@@ -1,31 +1,28 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import AuthContext from './authContext';
 import { isRoleValid } from './roleRoutes';
 
-const STORAGE_KEY = 'healthhive_role';
+const ROLE_KEY = 'healthhive_role';
 
-function getInitialRole() {
-  const stored = window.localStorage.getItem(STORAGE_KEY);
+function getStoredRole() {
+  const stored = window.localStorage.getItem(ROLE_KEY);
   return isRoleValid(stored) ? stored : null;
 }
 
 export default function AuthProvider({ children }) {
-  const [role, setRole] = useState(getInitialRole);
+  const [role, setRole] = useState(getStoredRole);
 
-  const login = (nextRole) => {
-    if (!isRoleValid(nextRole)) {
-      return false;
-    }
-
+  const login = useCallback((nextRole) => {
+    if (!isRoleValid(nextRole)) return false;
     setRole(nextRole);
-    window.localStorage.setItem(STORAGE_KEY, nextRole);
+    window.localStorage.setItem(ROLE_KEY, nextRole);
     return true;
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setRole(null);
-    window.localStorage.removeItem(STORAGE_KEY);
-  };
+    window.localStorage.removeItem(ROLE_KEY);
+  }, []);
 
   const value = useMemo(
     () => ({
@@ -34,7 +31,7 @@ export default function AuthProvider({ children }) {
       login,
       logout,
     }),
-    [role]
+    [role, login, logout]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -1,9 +1,9 @@
 .input {
   height: 46px;
   width: 100%;
-  border-radius: 14px;
-  border: 1px solid var(--divider);
-  background: rgba(255, 255, 255, 0.94);
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
   color: var(--text);
   padding: 0 16px;
   font-family: var(--font-body);
@@ -13,10 +13,10 @@
 }
 
 .input::placeholder {
-  color: color-mix(in srgb, var(--text-muted) 85%, white 15%);
+  color: #94a3b8;
 }
 
 .input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary-subtle) 80%, white 20%);
+  box-shadow: 0 0 0 4px rgba(45, 106, 79, 0.1);
 }

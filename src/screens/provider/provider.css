@@ -1,0 +1,327 @@
+/*
+ * provider.css — provider-specific visual enhancements.
+ * Builds on patient.css tokens (--primary, --ink, --surface, etc.).
+ * Imported by all three provider pages.
+ */
+
+/* ────────────────────────────────────────────────────────────
+   Patient roster (ProviderPatients)
+──────────────────────────────────────────────────────────── */
+
+.patients-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 600px) {
+  .patients-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 960px) {
+  .patients-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.patient-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid rgba(31, 39, 27, 0.09);
+  border-radius: 20px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(.22,1,.36,1),
+              box-shadow 0.22s cubic-bezier(.22,1,.36,1),
+              border-color 0.18s;
+}
+
+.patient-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(31, 39, 27, 0.11);
+  border-color: rgba(95, 120, 46, 0.3);
+}
+
+.patient-card__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.patient-card__avatar {
+  width: 48px !important;
+  height: 48px !important;
+  font-size: 1rem !important;
+  background: linear-gradient(135deg, var(--primary), color-mix(in srgb, var(--primary) 60%, #2d6a4f 40%)) !important;
+  box-shadow: 0 2px 8px rgba(95, 120, 46, 0.25);
+}
+
+.patient-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.patient-card__name {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+}
+
+.patient-card__email {
+  font-size: 0.8rem !important;
+  margin-top: 1px !important;
+}
+
+.patient-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 6px;
+}
+
+.patient-card__footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Provider stat summary chips (above roster)
+──────────────────────────────────────────────────────────── */
+
+.provider-stat-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.provider-stat-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid rgba(31, 39, 27, 0.09);
+  border-radius: 14px;
+  background: var(--surface);
+  min-width: 120px;
+  flex: 1;
+}
+
+.provider-stat-chip__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--primary) 12%, transparent 88%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.provider-stat-chip__val {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.provider-stat-chip__lbl {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Review board enhancements
+──────────────────────────────────────────────────────────── */
+
+.review-board__row {
+  border-radius: 16px !important;
+  padding: 16px !important;
+  border: 1px solid rgba(31,39,27,0.07) !important;
+}
+
+.review-board__row:hover {
+  transform: translateX(4px) !important;
+  border-color: rgba(95,120,46,0.2) !important;
+  box-shadow: 0 4px 16px rgba(31,39,27,0.07) !important;
+}
+
+/* Priority badge pill */
+.priority-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.priority-pill--high {
+  background: rgba(220, 38, 38, 0.1);
+  color: #b91c1c;
+}
+
+.priority-pill--medium {
+  background: rgba(234, 88, 12, 0.1);
+  color: #c2410c;
+}
+
+.priority-pill--low {
+  background: rgba(74, 150, 74, 0.1);
+  color: #166534;
+}
+
+.priority-pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Insight cards enhancements (dashboard summary cards)
+──────────────────────────────────────────────────────────── */
+
+.insight-card {
+  border-radius: 18px !important;
+  transition: transform 0.22s cubic-bezier(.22,1,.36,1),
+              box-shadow 0.22s cubic-bezier(.22,1,.36,1) !important;
+}
+
+.insight-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(31,39,27,0.09) !important;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Drawer enhancements
+──────────────────────────────────────────────────────────── */
+
+.drawer-kv-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 7px 10px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.drawer-kv-row:hover {
+  background: rgba(31, 39, 27, 0.04);
+}
+
+.drawer-kv-row strong {
+  color: var(--ink);
+  font-weight: 600;
+  text-align: right;
+  max-width: 55%;
+}
+
+.drawer-med-row {
+  padding: 10px 10px;
+  border-radius: 10px;
+  background: rgba(31, 39, 27, 0.025);
+  margin-bottom: 6px;
+  transition: background 0.15s;
+}
+
+.drawer-med-row:hover {
+  background: rgba(95, 120, 46, 0.06);
+}
+
+.drawer-lab-row {
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+
+.drawer-lab-row:hover {
+  background: rgba(31, 39, 27, 0.04);
+}
+
+.drawer-sub-row {
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(31, 39, 27, 0.07);
+  margin-bottom: 8px;
+  background: var(--surface);
+  transition: box-shadow 0.15s;
+}
+
+.drawer-sub-row:hover {
+  box-shadow: 0 2px 8px rgba(31,39,27,0.07);
+}
+
+.patient-panel-drawer {
+  width: 420px !important;
+}
+
+@media (max-width: 520px) {
+  .patient-panel-drawer { width: 100vw !important; }
+}
+
+/* ────────────────────────────────────────────────────────────
+   Filter bar / search row
+──────────────────────────────────────────────────────────── */
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.filter-bar__input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Provider-page section headings
+──────────────────────────────────────────────────────────── */
+
+.patient-section-kicker {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0 0 4px;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Scroll-reveal animation for .patient-dashboard-list__row
+──────────────────────────────────────────────────────────── */
+
+.patient-card {
+  opacity: 0;
+  animation: prov-card-in 0.5s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes prov-card-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* stagger first 12 cards */
+.patient-card:nth-child(1)  { animation-delay: 0.04s; }
+.patient-card:nth-child(2)  { animation-delay: 0.09s; }
+.patient-card:nth-child(3)  { animation-delay: 0.14s; }
+.patient-card:nth-child(4)  { animation-delay: 0.19s; }
+.patient-card:nth-child(5)  { animation-delay: 0.24s; }
+.patient-card:nth-child(6)  { animation-delay: 0.29s; }
+.patient-card:nth-child(7)  { animation-delay: 0.34s; }
+.patient-card:nth-child(8)  { animation-delay: 0.38s; }
+.patient-card:nth-child(9)  { animation-delay: 0.42s; }
+.patient-card:nth-child(10) { animation-delay: 0.46s; }
+.patient-card:nth-child(11) { animation-delay: 0.50s; }
+.patient-card:nth-child(12) { animation-delay: 0.54s; }

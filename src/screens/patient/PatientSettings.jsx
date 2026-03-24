@@ -8,7 +8,7 @@ import useAuth from '../../auth/useAuth';
 import useDashboardAnimations from '../../hooks/useDashboardAnimations';
 import './patient.css';
 
-export default function PatientSubmit() {
+export default function PatientSettings() {
   useDashboardAnimations();
   const nav = useNavigate();
   const { logout } = useAuth();
@@ -23,23 +23,23 @@ export default function PatientSubmit() {
           </div>
           <ChipGroup className="top-nav">
             <Chip onClick={() => nav('/patient')}>Home</Chip>
-            <Chip active>Submit</Chip>
+            <Chip onClick={() => nav('/patient/submit')}>Submit</Chip>
             <Chip onClick={() => nav('/patient/results')}>Results</Chip>
             <Chip onClick={() => nav('/patient/history')}>History</Chip>
             <Chip onClick={() => nav('/patient/appointments')}>Appointments</Chip>
             <Chip onClick={() => nav('/patient/medications')}>Medications</Chip>
             <Chip onClick={() => nav('/patient/billing')}>Billing</Chip>
-            <Chip onClick={() => nav('/patient/settings')}>Settings</Chip>
+            <Chip active>Settings</Chip>
             <Chip onClick={() => { logout(); nav('/'); }}>Logout</Chip>
           </ChipGroup>
         </header>
 
         <section className="patient-overview">
           <div className="patient-overview__main">
-            <p className="eyebrow">Submission area</p>
-            <h1 className="hero-title">All input fields have been removed.</h1>
+            <p className="eyebrow">Settings</p>
+            <h1 className="hero-title">Profile fields are empty.</h1>
             <p className="muted patient-overview__copy">
-              This page is now a static placeholder with no form controls or saved entries.
+              The layout stays in place, but no data is prefilled and nothing is stored.
             </p>
           </div>
         </section>
@@ -47,33 +47,46 @@ export default function PatientSubmit() {
         <Card className="patient-dashboard-card">
           <div className="patient-section-head">
             <div>
-              <p className="patient-section-kicker">Form layout</p>
-              <h2 className="h2">Empty submission fields</h2>
+              <p className="patient-section-kicker">Profile</p>
+              <h2 className="h2">Empty account fields</h2>
             </div>
           </div>
           <form className="patient-form-grid">
             <div className="patient-form-field patient-form-field--wide">
-              <label className="field-label">Symptoms</label>
+              <label className="field-label">Full name</label>
               <Input defaultValue="" />
             </div>
             <div className="patient-form-field">
-              <label className="field-label">Duration</label>
+              <label className="field-label">Phone</label>
               <Input defaultValue="" />
             </div>
             <div className="patient-form-field">
-              <label className="field-label">Severity</label>
+              <label className="field-label">Date of birth</label>
+              <Input type="date" defaultValue="" />
+            </div>
+            <div className="patient-form-field">
+              <label className="field-label">Sex</label>
+              <select className="signup-select" defaultValue="">
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div className="patient-form-field patient-form-field--wide">
+              <label className="field-label">Insurance</label>
+              <Input defaultValue="" />
+            </div>
+            <div className="patient-form-field">
+              <label className="field-label">Member ID</label>
+              <Input defaultValue="" />
+            </div>
+            <div className="patient-form-field">
+              <label className="field-label">Coverage</label>
               <Input defaultValue="" />
             </div>
             <div className="patient-form-field patient-form-field--wide">
-              <label className="field-label">Notes</label>
-              <Input defaultValue="" />
-            </div>
-            <div className="patient-form-field">
-              <label className="field-label">Sleep</label>
-              <Input defaultValue="" />
-            </div>
-            <div className="patient-form-field">
-              <label className="field-label">Hydration</label>
+              <label className="field-label">Pharmacy</label>
               <Input defaultValue="" />
             </div>
             <div className="actions-row">

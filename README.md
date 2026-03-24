@@ -1,56 +1,73 @@
 # HealthHive
 
-HealthHive is a role-based health tracking web app built as a senior project foundation. It is designed around three user types:
+HealthHive is a role-based healthcare web application built as a senior project. The current repository is a frontend-only shell that preserves the product structure, page layouts, routing, styling system, and role-based navigation while leaving the actual data layer empty.
 
-- `patient`: submit symptom check-ins, view history, and review results
-- `provider`: monitor patient trends and prioritize follow-up
-- `admin`: oversee platform status and account activity
+The app is organized around three workspaces:
 
-The current repo contains the React frontend prototype, role-aware routing, and product structure needed to evolve into a full-stack healthcare coordination app.
+- `patient`
+- `provider`
+- `admin`
 
-## Project Goals
+## Current Frontend State
 
-This project is intended to demonstrate:
+Right now, this project is intentionally frontend-first:
 
-- multi-role product design
-- protected routing and role-aware navigation
-- a marketing-to-application flow in one React app
-- scalable frontend structure for future backend integration
-- a clear path toward a portfolio-level full-stack system
+- role-based routing is in place
+- patient, provider, and admin screens exist
+- the landing page, auth flow, and workspace navigation are connected
+- forms and containers are present as UI structure
+- fields are empty and no application data is persisted
 
-## Current Features
+Authentication is still lightweight and frontend-only. The selected role is stored in local storage so the app can route to the correct workspace.
 
-### Public experience
+## What The Frontend Does
 
-- single-page marketing landing page
-- in-page navigation with smooth scrolling
-- back-to-top button
-- sample footer
-- redirects from old marketing routes to landing page sections
+The frontend currently demonstrates:
 
-### Authentication flow
+- a marketing-to-app flow in one React application
+- protected role-aware routing with React Router
+- reusable UI primitives such as buttons, cards, chips, and inputs
+- consistent screen composition across patient, provider, and admin experiences
+- empty frontend forms and placeholders that are ready to connect to real APIs later
 
-- role-based sign-in screen
-- frontend route protection by role
-- automatic redirect to the correct dashboard
+This makes the project useful as a product shell: the interface and navigation are already built, so backend work can focus on real data, business logic, and integrations.
 
-Note:
-Current authentication is demo-level and uses local storage for role state. It is not production auth.
+## Styling And Design Choices
 
-### Patient experience
+The current UI is designed to feel clean, modern, and clinical without looking generic.
 
-- patient home dashboard
-- symptom submission screen
-- results screen
-- history screen
+### Visual direction
 
-### Provider experience
+- soft healthcare-inspired green palette
+- white card surfaces on a light neutral background
+- rounded containers and cards for a softer product feel
+- subtle shadows and borders instead of heavy contrast
 
-- provider dashboard shell for patient review workflows
+### Typography
 
-### Admin experience
+- `Fraunces` for display headings
+- `Manrope` for body copy and interface text
 
-- admin dashboard shell for platform oversight workflows
+This combination gives the project a more editorial and intentional look than a default system-font dashboard.
+
+### Layout choices
+
+- a framed app shell using `.app-stage` and `.container`
+- card-based composition for dashboards and sections
+- responsive spacing that scales from mobile to desktop
+- role-separated screen folders so each workspace can evolve independently
+
+### Theme tokens
+
+Core design tokens live in [src/styles/theme.css](/Users/matthewwoods/SeniorProject/healthhive-react/src/styles/theme.css), including:
+
+- primary greens for CTA and navigation emphasis
+- neutrals for surfaces and dividers
+- shared radius tokens
+- shared shadow tokens
+- font variables for display and body text
+
+Global layout and typography rules live in [src/styles/global.css](/Users/matthewwoods/SeniorProject/healthhive-react/src/styles/global.css).
 
 ## Tech Stack
 
@@ -58,7 +75,7 @@ Current authentication is demo-level and uses local storage for role state. It i
 - React Router 7
 - Vite
 - ESLint
-- CSS modules by feature area via plain `.css` files
+- plain CSS organized by feature area
 
 ## App Structure
 
@@ -66,6 +83,7 @@ Current authentication is demo-level and uses local storage for role state. It i
 src/
   auth/
     AuthProvider.jsx
+    authContext.js
     roleRoutes.js
     useAuth.js
   components/
@@ -73,6 +91,7 @@ src/
     Card.jsx
     Chips.jsx
     Input.jsx
+    Toast.jsx
   layouts/
     AppShell.jsx
   screens/
@@ -81,12 +100,15 @@ src/
     marketing/
     patient/
     provider/
+  styles/
+    global.css
+    theme.css
   router.jsx
 ```
 
 ## Role Routing
 
-The app currently supports these role destinations:
+Current role destinations:
 
 - `patient` -> `/patient`
 - `provider` -> `/provider`
@@ -96,12 +118,7 @@ Public routes:
 
 - `/`
 - `/login`
-
-Marketing shortcut routes:
-
-- `/resources` -> `/#resources`
-- `/how-to` -> `/#how-to`
-- `/contact` -> `/#contact`
+- `/signup`
 
 ## Getting Started
 
@@ -116,7 +133,7 @@ Marketing shortcut routes:
 npm install
 ```
 
-### Start development server
+### Run development server
 
 ```bash
 npm run dev
@@ -128,92 +145,133 @@ npm run dev
 npm run build
 ```
 
-### Lint the project
+### Lint
 
 ```bash
 npm run lint
 ```
 
-## Current State
+## How To Incorporate The Backend
 
-This repo is currently a frontend-first product prototype. The UI, routing, and role separation are in place, but the app still needs a real backend to become a complete senior-project-quality system.
+The current frontend is set up in a way that makes backend integration straightforward. The recommended approach is to add a real API layer instead of wiring network calls directly inside screen components.
 
-What is implemented now:
+### Recommended integration plan
 
-- frontend routing
-- demo auth state
-- marketing site
-- patient/provider/admin screen structure
+1. Create an API folder such as `src/api/`.
+2. Add a shared HTTP client such as `src/api/client.js`.
+3. Split domain logic into files such as:
+   - `src/api/auth.js`
+   - `src/api/patient.js`
+   - `src/api/provider.js`
+   - `src/api/admin.js`
+   - `src/api/chatbot.js`
+4. Replace placeholder screen content with controlled state, loading states, and API calls.
+5. Move authentication from local role storage to real login/session handling.
+6. Add error handling, validation, and API response mapping per role workflow.
 
-What is not implemented yet:
+### Suggested frontend/backend connection points
 
-- real user accounts
-- secure authentication
-- database persistence
-- API integration
-- provider review workflows backed by real data
-- admin account management backed by real data
+- `AuthProvider.jsx`
+  Replace local role-only auth with login, logout, token/session storage, and current-user fetch.
 
-## Backend Direction
+- patient screens
+  Connect forms and views to endpoints for submissions, appointments, medications, billing, and results.
 
-The backend plan for this project is documented in [BACKEND_ROADMAP.md](./BACKEND_ROADMAP.md).
+- provider screens
+  Connect review queues, patient records, scheduling, and notes to backend resources.
 
-The recommended next steps are:
+- admin screens
+  Connect approvals, operational issues, audit logs, and platform metrics to admin APIs.
 
-1. create the backend service
-2. add real authentication
-3. persist patient submissions
-4. load patient history and results from the backend
-5. add provider and admin data workflows
-6. add testing across frontend and backend
+### Suggested API shape
 
-## Recommended Senior Project Upgrades
+Examples of backend routes the frontend will likely need:
 
-To make this project portfolio-level, the highest-value additions are:
+- `POST /auth/login`
+- `POST /auth/logout`
+- `GET /auth/me`
+- `GET /patients/:id`
+- `GET /patients/:id/submissions`
+- `POST /patients/:id/submissions`
+- `GET /providers/:id/queue`
+- `POST /appointments`
+- `GET /admin/audit`
+- `POST /chat`
 
-- real auth with hashed passwords and role-based authorization
-- PostgreSQL-backed patient submissions and history
-- provider review workflow for assigned patients
-- admin dashboard backed by audit and account data
-- charts for symptom and wellness trends
-- loading, error, and empty states across the app
-- automated testing
-- deployment for both frontend and backend
+### Environment setup
 
-## Demo Flow
+Use Vite environment variables for backend configuration, for example:
 
-Right now, the intended walkthrough is:
+```env
+VITE_API_BASE_URL=http://localhost:8080/api
+```
 
-1. open the landing page
-2. go to sign in
-3. choose a role
-4. view the role-specific workspace
-5. explore patient, provider, or admin screens
+Then reference that in a shared client:
 
-Because auth is still demo-mode, role selection is currently handled client-side.
+```js
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+```
 
-## Future Enhancements
+### Recommended implementation pattern
 
-- TypeScript migration
-- backend API integration
-- persistent user accounts
-- provider notes and submission review states
-- patient charting and analytics
-- exportable summaries
-- accessibility improvements
-- CI pipeline for lint, build, and tests
+- keep screens focused on rendering
+- keep HTTP logic inside `src/api/`
+- keep auth/session state in `AuthProvider`
+- use reusable request helpers for headers, tokens, and JSON parsing
+- add loading, success, and error states before connecting full workflows
+
+## AI Chatbot Integration
+
+The AI chatbot should be integrated through the backend, not directly from the browser to the model provider.
+
+### Recommended architecture
+
+1. Build a backend `/chat` or `/assistant/chat` endpoint.
+2. Send the user message and relevant app context from the frontend to that backend route.
+3. Let the backend call the AI provider securely using server-side API keys.
+4. Return the assistant response to the frontend chat UI.
+
+### Why route chatbot requests through the backend
+
+- protects API keys
+- allows prompt control and guardrails
+- makes logging and moderation possible
+- lets you inject app context such as role, patient state, or provider workflow context
+- makes it easier to add rate limiting and analytics
+
+### Frontend chatbot pieces to add later
+
+- `ChatbotPanel.jsx` or `ChatWidget.jsx`
+- chat state for messages, loading, and error handling
+- API file such as `src/api/chatbot.js`
+- role-aware placement:
+  - patient support assistant
+  - provider workflow assistant
+  - admin help assistant
+
+## TODO
+
+- build a real backend and replace local role-only auth with full authentication
+- create an API layer in `src/api/` and connect all workspace screens to backend data
+- connect patient submissions, appointments, billing, medications, and results to live endpoints
+- connect provider queue, patient records, and scheduling workflows to live endpoints
+- connect admin approvals, operational issues, and audit views to live endpoints
+- add an AI chatbot backed by a secure server-side integration
+- design the chatbot UI and connect it to a backend `/chat` endpoint
+- add loading, error, and success states to all major screens
+- add automated tests
+- prepare deployment configuration for frontend and backend
 
 ## Repository Notes
 
 - branding assets live in `public/`
 - global styles live in `src/styles/`
-- marketing-specific UI lives in `src/screens/marketing/`
-- patient/provider/admin screens are separated by role under `src/screens/`
+- marketing UI lives in `src/screens/marketing/`
+- patient, provider, and admin pages are separated under `src/screens/`
+- role-based auth state currently lives in [src/auth/AuthProvider.jsx](/Users/matthewwoods/SeniorProject/healthhive-react/src/auth/AuthProvider.jsx)
 
-## Authoring Direction
+## Presentation Summary
 
-This repository is best presented as:
+This repository is best described as:
 
-`A role-based health coordination platform prototype evolving into a full-stack senior project.`
-
-That framing is honest, technically credible, and strong for a portfolio as long as the backend work follows.
+`A role-based healthcare frontend shell built in React, with completed navigation and styling, ready for backend and AI chatbot integration.`
